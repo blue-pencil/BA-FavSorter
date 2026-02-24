@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>블루아카 최애캐 월드컵</title>
+    <meta name="description" content="나만의 최애 학생 TOP 30을 가장 빠르게 찾아보세요!">
+
+    <meta property="og:title" content="BlueArchive Character Sorter">
+    <meta property="og:description" content="나만의 최애 학생 TOP 30을 가장 빠르게 찾아보세요!">
+    <meta property="og:image" content="assets/img/thumb.jpg">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="BlueArchive Fav Sorter">
+    <meta name="twitter:description" content="나만의 최애 학생 TOP 30을 가장 빠르게 찾아보세요!">
+    <meta name="twitter:image" content="assets/img/thumb.jpg">
+
+    <meta name="author" content="bluepencil">
+
+    <!-- Icons & Logos -->
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="assets/img/logo.jpg">
+    <meta property="og:logo" content="assets/img/logo.jpg">
+
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div id="app" class="container">
+        <section id="screen-intro" class="screen active">
+            <h1 class="title" data-i18n="title">블루아카이브 최애캐 월드컵</h1>
+            <p class="subtitle" data-i18n="subtitle">나만의 최애 학생 TOP 30을 가장 빠르게 찾아보세요!</p>
+            <div style="display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+                <button id="btn-start" class="btn primary" style="font-size: 1.3rem; padding: 1rem 3rem;"
+                    data-i18n="btn-start">새로
+                    시작하기</button>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                    <button id="btn-load" class="btn secondary" data-i18n="btn-load">이어하기</button>
+                    <button id="btn-load-hash" class="btn secondary" data-i18n="btn-load-hash">코드로 이어하기</button>
+                </div>
+            </div>
+        </section>
+        <section id="screen-instruction" class="screen hidden">
+            <h2 class="title" data-i18n="instruction-title">진행 방법</h2>
+            <div class="instructions">
+                <p style="text-align: center; font-size: 1.15rem; margin-bottom: 1.5rem; color: #fff;"
+                    data-i18n="instruction-limit">최대 30명까지의 순위를 매깁니다.</p>
+                <ol>
+                    <li data-i18n="instruction-1">두 학생 중 더 선호하는 학생을 선택하세요.</li>
+                    <li data-i18n="instruction-2">잘 모르거나 관심 없는 학생은 '관심 없음'을 눌러 우선 제외하세요.</li>
+                    <li data-i18n="instruction-3">'관심 없음'을 적극적으로 활용하여 나만의 최애 학생을 빠르게 찾아보세요!</li>
+                </ol>
+                <div class="shortcuts-container">
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem; color: #fff;" data-i18n="shortcut-title">
+                        키보드
+                        단축키</h3>
+                    <ul
+                        style="list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; font-size: 0.95rem; color: #ddd;">
+                        <li><strong
+                                style="color: #fff; background: #333; padding: 0.2rem 0.5rem; border-radius: 4px; border: 1px solid #555;">A</strong>
+                            <span data-i18n="shortcut-a">왼쪽 선택</span>
+                        </li>
+                        <li><strong
+                                style="color: #fff; background: #333; padding: 0.2rem 0.5rem; border-radius: 4px; border: 1px solid #555;">'</strong>
+                            <span data-i18n="shortcut-quote">오른쪽 선택 (<kbd>'</kbd> 따옴표)</span>
+                        </li>
+                        <li><strong
+                                style="color: #fff; background: #333; padding: 0.2rem 0.5rem; border-radius: 4px; border: 1px solid #555;">Z</strong>
+                            <span data-i18n="shortcut-z">왼쪽 관심 없음</span>
+                        </li>
+                        <li><strong
+                                style="color: #fff; background: #333; padding: 0.2rem 0.5rem; border-radius: 4px; border: 1px solid #555;">/</strong>
+                            <span data-i18n="shortcut-slash">오른쪽 관심 없음</span>
+                        </li>
+                        <li><strong
+                                style="color: #fff; background: #333; padding: 0.2rem 0.6rem; border-radius: 4px; border: 1px solid #555; white-space: nowrap;">Space</strong>
+                            <span data-i18n="shortcut-space">무승부 (미루기)</span>
+                        </li>
+                        <li><strong
+                                style="color: #fff; background: #333; padding: 0.2rem 0.6rem; border-radius: 4px; border: 1px solid #555; white-space: nowrap;">Backspace</strong>
+                            <span data-i18n="shortcut-backspace">이전으로</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <button id="btn-begin-sort" class="btn primary" data-i18n="btn-begin-sort">진행하기</button>
+        </section>
+        <section id="screen-main" class="screen hidden">
+            <div class="progress-container">
+                <div class="progress-text">
+                    <span id="current-match-info">1번째 선택</span>
+                    <span id="progress-percentage">0%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div id="progress-bar-fill" class="progress-bar-fill"></div>
+                </div>
+            </div>
+            <div class="versus-container">
+                <div class="character-card" id="card-left">
+                    <div class="image-wrapper">
+                        <img id="img-left" src="assets/img/defaultL.webp" alt="Left Character">
+                    </div>
+                    <div class="action-buttons">
+                        <button id="btn-ignore-left" class="btn ignore" data-i18n="btn-ignore-left">관심 없음</button>
+                    </div>
+                </div>
+                <div class="vs-text">VS</div>
+                <div class="character-card" id="card-right">
+                    <div class="image-wrapper">
+                        <img id="img-right" src="assets/img/defaultR.webp" alt="Right Character">
+                    </div>
+                    <div class="action-buttons">
+                        <button id="btn-ignore-right" class="btn ignore" data-i18n="btn-ignore-right">관심 없음</button>
+                    </div>
+                </div>
+            </div>
+            <div class="global-actions">
+                <button id="btn-undo" class="btn secondary" data-i18n="btn-undo">이전 (재선택)</button>
+                <button id="btn-draw" class="btn secondary" data-i18n="btn-draw">무승부 (미루기)</button>
+                <button id="btn-copy-hash" class="btn secondary exit-btn" data-i18n="btn-copy-hash">코드로 백업</button>
+                <button id="btn-home" class="btn danger exit-btn" data-i18n="btn-home">처음부터</button>
+            </div>
+        </section>
+        <section id="screen-result" class="screen hidden">
+            <h2 class="title" data-i18n="result-title">나의 최애 학생 TOP 30</h2>
+            <div id="ranking-list" class="ranking-container">
+            </div>
+            <div class="result-actions" style="display: flex; gap: 1rem; margin-top: 2rem; justify-content: center;"
+                data-html2canvas-ignore>
+                <button id="btn-restart" class="btn secondary" data-i18n="btn-restart">다시하기</button>
+                <button id="btn-download" class="btn primary" data-i18n="btn-download">이미지로 저장</button>
+            </div>
+        </section>
+        <footer class="site-footer">
+            블루아카이브 최애캐 월드컵 Ver. 1.0 | made by bluepencil.<br>
+            "블루 아카이브"는 주식회사 넥슨게임즈의 등록상표이며, 각 이미지의 저작권은 넥슨게임즈에 있습니다.
+        </footer>
+    </div>
+    <script>
+        let dataSet = {};
+        let dataSetVersion = "";
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="js/characterList.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
