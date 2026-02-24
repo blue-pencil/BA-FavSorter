@@ -20,6 +20,11 @@
     font-family: "Pretendard GOV Variable", "Pretendard GOV", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
 
+html {
+    background-color: var(--bg-color);
+    overscroll-behavior-y: none;
+}
+
 body {
     background-color: var(--bg-color);
     background-image: url('assets/img/bg.webp');
@@ -35,6 +40,7 @@ body {
     padding: 0;
     position: relative;
     z-index: 0;
+    overscroll-behavior-y: none;
 }
 
 body::before {
