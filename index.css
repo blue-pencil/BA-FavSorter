@@ -17,7 +17,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: "Pretendard GOV Variable", "Pretendard GOV", "Pretendard JP", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-family: "Pretendard GOV Variable", "Pretendard GOV", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
 
 body {
@@ -28,6 +28,8 @@ body {
     background-attachment: fixed;
     color: var(--text-color);
     min-height: 100vh;
+    min-height: -webkit-fill-available;
+    min-height: max(100vh, 100%);
     overflow-x: hidden;
     margin: 0;
     padding: 0;
@@ -42,6 +44,9 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
+    height: 100vh;
+    height: -webkit-fill-available;
+    height: max(100vh, 100%);
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
