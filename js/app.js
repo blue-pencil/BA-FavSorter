@@ -379,10 +379,25 @@ function setupNextMatch() {
     updateProgress();
 }
 function renderMatch() {
-    imgLeft.src = currentLeft.image;
-    imgLeft.onerror = () => { imgLeft.src = 'assets/img/defaultL.webp'; };
-    imgRight.src = currentRight.image;
-    imgRight.onerror = () => { imgRight.src = 'assets/img/defaultR.webp'; };
+    const applyImage = (img, newSrc, defaultSrc) => {
+        if (img.dataset.src !== newSrc) {
+            img.style.opacity = '0';
+            img.onload = () => { img.style.opacity = '1'; };
+            img.onerror = () => { 
+                img.src = defaultSrc; 
+                img.style.opacity = '1'; 
+            };
+            img.dataset.src = newSrc;
+            img.src = newSrc;
+            if (img.complete) {
+                img.style.opacity = '1';
+            }
+        }
+    };
+
+    applyImage(imgLeft, currentLeft.image, 'assets/img/defaultL.webp');
+    applyImage(imgRight, currentRight.image, 'assets/img/defaultR.webp');
+
     btnIgnoreLeft.classList.remove('hidden');
     btnIgnoreRight.classList.remove('hidden');
     saveGameState();

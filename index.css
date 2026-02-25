@@ -312,6 +312,18 @@ body::before {
     align-items: center;
 }
 
+#card-left .image-wrapper {
+    background-image: url('assets/img/defaultL.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+#card-right .image-wrapper {
+    background-image: url('assets/img/defaultR.webp');
+    background-size: cover;
+    background-position: center;
+}
+
 .image-wrapper img {
     width: 100%;
     height: 100%;
